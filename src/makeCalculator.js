@@ -5,37 +5,26 @@
  */
 function makeCalculator() {
   return {
-    currentValue: 0,
-    get add() {
-      return (value) => {
-        this.currentValue += value;
-      };
+    result: 0,
+    add(value) {
+      this.result += value;
     },
-    get subtract() {
-      return (value) => {
-        this.currentValue -= value;
-      };
+    subtract(value) {
+      this.result -= value;
     },
-    get multiply() {
-      return (value) => {
-        this.currentValue *= value;
-      };
+    multiply(value) {
+      this.result *= value;
     },
-    get divide() {
-      return (value) => {
-        this.currentValue /= value;
-      };
-    },
-    get result() {
-      return this.currentValue;
+    divide(value) {
+      this.result /= value;
     },
     operate(callback, value) {
-      callback(value);
+      callback.call(this, value);
 
       return this;
     },
     reset() {
-      this.currentValue = 0;
+      this.result = 0;
 
       return this;
     },
